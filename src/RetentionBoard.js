@@ -1,10 +1,10 @@
 // src/RetentionBoard.js
-
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Chart from 'react-apexcharts';
 import moment from 'moment';
+
 const Wrapper = styled.div``;
 const getDateByWeek = (year, month, date, week) => {
     let weekBefore = moment(`${year}-${month}-${date}`)
@@ -24,6 +24,7 @@ class RetentionBoard extends React.Component {
         let month = today.getMonth() + 1; // 월
         let date = today.getDate(); // 날짜
         let day = today.getDay(); // 요일
+
         this.state = {
             series: [
                 {
@@ -35,15 +36,12 @@ class RetentionBoard extends React.Component {
                         },
                         {
                             x: 'week1',
-                            // y: 29,
                         },
                         {
                             x: 'week2',
-                            // y: 13,
                         },
                         {
                             x: 'week3',
-                            // y: 32,
                         },
                     ],
                 },
@@ -113,26 +111,23 @@ class RetentionBoard extends React.Component {
             ],
             options: {
                 chart: {
-                    // height: 350,
                     type: 'heatmap',
                 },
                 dataLabels: {
                     enabled: false,
                 },
                 colors: ['#008FFB'],
-                // title: {
-                //     text: 'HeatMap Chart (Single color)',
-                // },
             },
         };
     }
 
     render() {
+        const { options, series } = this.state;
         return (
             <Wrapper>
                 <Chart
-                    options={this.state.options}
-                    series={this.state.series}
+                    options={options}
+                    series={series}
                     type="heatmap"
                     // height={350}
                 />
